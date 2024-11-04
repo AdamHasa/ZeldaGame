@@ -1,6 +1,7 @@
 package Main;
 
 import Entity.Player;
+import tile.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,9 +18,13 @@ public class GamePanel extends JPanel implements Runnable{
     public final int maxScreenRow = 12;
     public final int screenWidth = tileSize * maxScreenCol; //768
     public final int screenHeight = tileSize * maxScreenRow; //576
+    public final int maxWorldCol = 50;
+    public final int maxWorldRow = 50;
 
     // FPS
     int FPS = 60;
+    
+    TileManager tileM = new TileManager(this);
 
     //Keyhandler
     KeyHandler keyH = new KeyHandler();
@@ -81,8 +86,7 @@ public class GamePanel extends JPanel implements Runnable{
 
         Graphics2D g2 = (Graphics2D)g;
 
-       // tileM.draw(g2);
-
+        tileM.draw(g2);
 
         player.draw(g2);
 
