@@ -8,6 +8,7 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import Object.SuperObject;
 
 public class GamePanel extends JPanel implements Runnable{
 
@@ -27,6 +28,9 @@ public class GamePanel extends JPanel implements Runnable{
     //collision
     public CollisionChecker cChecker = new CollisionChecker(this);
 
+    //asset setter
+    public AssetSetter aSetter = new AssetSetter(this);
+
     // FPS
     int FPS = 60;
 
@@ -39,6 +43,7 @@ public class GamePanel extends JPanel implements Runnable{
     Thread gameThread;
 
     public Player player = new Player(this, keyH);
+    public SuperObject obj[] = new SuperObject[10];
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -52,6 +57,7 @@ public class GamePanel extends JPanel implements Runnable{
         tileM = new TileManager(this);
     }
     public void setupGame() {
+        aSetter.setObject();
     }
 
     public void startGameThread() {
@@ -122,6 +128,12 @@ public class GamePanel extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D)g;
 
         tileM.draw(g2);
+
+        for (int i = 0; i< obj.length; i++){
+            if (obj[i] != null){
+                obj[i].draw(g2,this);
+            }
+        }
 
         player.draw(g2);
 
