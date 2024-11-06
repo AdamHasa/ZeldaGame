@@ -5,6 +5,9 @@ import tile.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class GamePanel extends JPanel implements Runnable{
 
@@ -18,13 +21,16 @@ public class GamePanel extends JPanel implements Runnable{
     public final int maxScreenRow = 12;
     public final int screenWidth = tileSize * maxScreenCol; //768
     public final int screenHeight = tileSize * maxScreenRow; //576
-    public final int maxWorldCol = 10;
-    public final int maxWorldRow = 8;
+    public int maxWorldCol;
+    public int maxWorldRow;
+
+    //collision
+    public CollisionChecker cChecker = new CollisionChecker(this);
 
     // FPS
     int FPS = 60;
-    
-    TileManager tileM = new TileManager(this);
+
+    TileManager tileM;
 
     //Keyhandler
     KeyHandler keyH = new KeyHandler();
@@ -40,6 +46,10 @@ public class GamePanel extends JPanel implements Runnable{
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
+
+        loadMap("res\\maps\\world01.txt");
+
+        tileM = new TileManager(this);
     }
     public void setupGame() {
     }
@@ -47,6 +57,31 @@ public class GamePanel extends JPanel implements Runnable{
     public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
+    }
+
+    public void loadMap(String filePath) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            int rowCount = 0;
+            int colCount = 0;
+
+            // Read through the file to calculate maxWorldCol and maxWorldRow
+            while ((line = br.readLine()) != null) {
+                String[] tiles = line.trim().split("\\s+"); // Split by whitespace
+                colCount = Math.max(colCount, tiles.length); // Set colCount to the longest row found
+                rowCount++; // Count the rows
+            }
+
+            // Set maxWorldCol and maxWorldRow based on file contents
+            maxWorldCol = colCount;
+            maxWorldRow = rowCount;
+
+            System.out.println("World Size: " + maxWorldCol + " columns, " + maxWorldRow + " rows");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Failed to load the map file.");
+        }
     }
 
     @Override
