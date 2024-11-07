@@ -14,6 +14,7 @@ public class Player extends Entity{
 
     public final int screenX;
     public final int screenY;
+    public int smallKey = 0;
 
     public Player(GamePanel gp, KeyHandler keyH){
         this.gp = gp;
@@ -62,6 +63,9 @@ public class Player extends Entity{
             collisionOn = false;
             gp.cChecker.checkTile(this);
 
+            int objIndex = gp.cChecker.checkObject(this, true);
+            pickUpObject(objIndex);
+
             if(!collisionOn) {
                 switch (direction) {
                     case "up":
@@ -91,6 +95,20 @@ public class Player extends Entity{
         }
     }
 
+    public void pickUpObject(int i) {
+
+        if (i != 999) {
+            String objectName = gp.obj[i].name;
+
+            switch (objectName) {
+                case "SmallKey":
+                    smallKey++;
+                    gp.obj[i] = null;
+                    System.out.println("Player has keys: " + smallKey);
+                    break;
+            }
+        }
+    }
     private void setDefaultValues() {
         worldX = gp.tileSize * 4;
         worldY = gp.tileSize * 4;

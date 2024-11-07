@@ -14,8 +14,10 @@ public class AssetSetter {
         gp.obj[0] = new OBJ_SmallKey();
         gp.obj[0].worldX = 3 * gp.tileSize;
         gp.obj[0].worldY = 3 * gp.tileSize;
-        System.out.println(gp.obj[0].worldX);
-        System.out.println(gp.obj[0].worldY);
-        System.out.println(gp.obj[0].worldY);
+
+        gp.obj[1] = new OBJ_SmallKey();
+        gp.obj[1].worldX = 5 * gp.tileSize;
+        gp.obj[1].worldY = 5 * gp.tileSize;
+
     }
 }
