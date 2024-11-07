@@ -106,6 +106,17 @@ public class Player extends Entity{
                     gp.obj[i] = null;
                     System.out.println("Player has keys: " + smallKey);
                     break;
+                case "LockedDoor":
+                    if(smallKey >0){
+                        smallKey--;
+                        gp.obj[i] = null;
+                        System.out.println("Unlocked door");
+                        System.out.println("Player has keys: " + smallKey);
+                    }else {
+                        System.out.println("No keys");
+                    }
+
+                    break;
             }
         }
     }
