@@ -39,6 +39,10 @@ public class GamePanel extends JPanel implements Runnable{
     //Keyhandler
     KeyHandler keyH = new KeyHandler();
 
+    //sound
+    Sound music = new Sound();
+    Sound se = new Sound();
+
     //Thread
     Thread gameThread;
 
@@ -58,6 +62,8 @@ public class GamePanel extends JPanel implements Runnable{
     }
     public void setupGame() {
         aSetter.setObject();
+
+        playMusic(0);
     }
 
     public void startGameThread() {
@@ -138,5 +144,20 @@ public class GamePanel extends JPanel implements Runnable{
         player.draw(g2);
 
         g2.dispose();
+    }
+
+    public void playMusic(int i){
+        music.setFile(i);
+        music.play();
+        music.loop();
+    }
+
+    public void stopMusic(){
+        music.stop();
+    }
+
+    public void playSE(int i){
+        se.setFile(i);
+        se.play();
     }
 }
