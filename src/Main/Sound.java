@@ -12,7 +12,8 @@ public class Sound {
 
     public Sound(){
         soundURL[0] = getClass().getResource("/sound/Forest_Temple.wav");
-        System.out.println(soundURL[0]);
+        soundURL[1] = getClass().getResource("/sound/key.wav");
+        soundURL[2] = getClass().getResource("/sound/unlock.wav");
     }
 
     public void setFile(int i){
