@@ -18,4 +18,8 @@ public class Entity {
     //Collision
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
+
+    //character status
+    public int maxLife;
+    public int life;
 }
