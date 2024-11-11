@@ -43,6 +43,8 @@ public class GamePanel extends JPanel implements Runnable{
     Sound music = new Sound();
     Sound se = new Sound();
 
+    public UI ui = new UI(this);
+
     //Thread
     Thread gameThread;
 
@@ -142,6 +144,8 @@ public class GamePanel extends JPanel implements Runnable{
         }
 
         player.draw(g2);
+
+        ui.draw(g2);
 
         g2.dispose();
     }

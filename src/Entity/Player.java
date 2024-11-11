@@ -105,15 +105,13 @@ public class Player extends Entity{
                     gp.playSE(1);
                     smallKey++;
                     gp.obj[i] = null;
-                    System.out.println("Player has keys: " + smallKey);
+                    gp.ui.showMessage("Picked up key");
                     break;
                 case "LockedDoor":
                     if(smallKey >0){
                         gp.playSE(2);
                         smallKey--;
                         gp.obj[i] = null;
-                        System.out.println("Unlocked door");
-                        System.out.println("Player has keys: " + smallKey);
                     }else {
                         System.out.println("No keys");
                     }
