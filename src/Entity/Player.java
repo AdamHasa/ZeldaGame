@@ -2,6 +2,7 @@ package Entity;
 
 import Main.GamePanel;
 import Main.KeyHandler;
+import Main.UtilityTool;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -33,19 +34,28 @@ public class Player extends Entity{
     }
 
     private void getPlayerImage() {
-        try{
-            up1 = ImageIO.read(getClass().getResourceAsStream("/player/player_up_01.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/player/player_up_02.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/player/player_down_01.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/player/player_down_02.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/player/player_left_01.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/player/player_left_02.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/player/player_right_01.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/player/player_right_02.png"));
+        up1 = setup("player_up_01");
+        up2 = setup("player_up_02");
+        down1 = setup("player_down_01");
+        down2 = setup("player_down_02");
+        left1 = setup("player_left_01");
+        left2 = setup("player_left_02");
+        right1 = setup("player_right_01");
+        right2 = setup("player_right_02");
+    }
 
-        }catch(IOException e){
+    public BufferedImage setup(String imagePath){
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage scaledImage = null;
+
+        try{
+            scaledImage = ImageIO.read(getClass().getResourceAsStream("/player/"+ imagePath + ".png"));
+            scaledImage = uTool.scaleImage(scaledImage, gp.tileSize, gp.tileSize);
+
+        }catch (IOException e){
             e.printStackTrace();
         }
+        return scaledImage;
     }
 
     public void update() {
@@ -171,6 +181,6 @@ public class Player extends Entity{
                 break;
         }
 
-        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, screenX, screenY,null);
     }
 }

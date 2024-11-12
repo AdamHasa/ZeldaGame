@@ -20,7 +20,7 @@ public class UI {
         this.gp = gp;
         arial_40 = new Font("Arial", Font.PLAIN, 40);
         arial_80B = new Font("Arial", Font.BOLD, 80);
-        OBJ_SmallKey key = new OBJ_SmallKey();
+        OBJ_SmallKey key = new OBJ_SmallKey(gp);
         keyImage = key.image;
 
         //Hud Object
