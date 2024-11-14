@@ -11,7 +11,7 @@ public class Sound {
     URL soundURL[] = new URL[30];
 
     public Sound(){
-        soundURL[0] = getClass().getResource("/sound/Forest_Temple.wav");
+        soundURL[0] = getClass().getResource("/sound/Hyrule_Field.wav");
         soundURL[1] = getClass().getResource("/sound/key.wav");
         soundURL[2] = getClass().getResource("/sound/unlock.wav");
     }

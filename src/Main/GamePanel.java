@@ -1,5 +1,6 @@
 package Main;
 
+import Entity.Entity;
 import Entity.Player;
 import tile.TileManager;
 
@@ -30,6 +31,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     //asset setter
     public AssetSetter aSetter = new AssetSetter(this);
+    public Entity[] npc;
 
     // FPS
     int FPS = 60;
