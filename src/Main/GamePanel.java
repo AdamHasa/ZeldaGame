@@ -9,7 +9,9 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import Object.SuperObject;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class GamePanel extends JPanel implements Runnable{
 
@@ -50,8 +52,10 @@ public class GamePanel extends JPanel implements Runnable{
     //Thread
     Thread gameThread;
 
+    //Player and Entity
     public Player player = new Player(this, keyH);
-    public SuperObject obj[] = new SuperObject[10];
+    public Entity obj[] = new Entity[10];
+    ArrayList<Entity> entityList = new ArrayList<>();
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -137,15 +141,42 @@ public class GamePanel extends JPanel implements Runnable{
 
         Graphics2D g2 = (Graphics2D)g;
 
+
+//        for (int i = 0; i< obj.length; i++){
+//            if (obj[i] != null){
+//                obj[i].draw(g2,this);
+//            }
+//        }
+
         tileM.draw(g2);
 
-        for (int i = 0; i< obj.length; i++){
-            if (obj[i] != null){
-                obj[i].draw(g2,this);
+        entityList.add(player);
+
+//        for(int i = 0; i< npc.length; i++){
+//            if(npc[i] != null){
+//                entityList.add(npc[i]);
+//            }
+//        }
+
+        for(int i = 0; i<obj.length; i++){
+            if(obj[i] != null){
+                entityList.add(obj[i]);
             }
         }
 
-        player.draw(g2);
+        Collections.sort(entityList, new Comparator<Entity>(){
+
+            @Override
+            public int compare(Entity e1, Entity e2) {
+                int result = Integer.compare(e1.worldY, e2.worldY);
+                return result;
+            }
+        });
+
+        for (int i= 0; i<entityList.size(); i++){
+            entityList.get(i).draw(g2);
+        }
+        entityList.clear();
 
         ui.draw(g2);
 

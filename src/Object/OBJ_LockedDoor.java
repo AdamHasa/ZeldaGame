@@ -1,22 +1,16 @@
 package Object;
 
+import Entity.Entity;
 import Main.GamePanel;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
-public class OBJ_LockedDoor extends SuperObject {
-    GamePanel gp;
+public class OBJ_LockedDoor extends Entity {
     public OBJ_LockedDoor(GamePanel gp){
-        this.gp = gp;
+        super(gp);
         name = "LockedDoor";
-
-        try{
-            image = ImageIO.read(getClass().getResourceAsStream("/tiles/door/small_door_locked.png"));
-            uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+        down1 = setup("/tiles/door/small_door_locked");
 
         collision = true;
     }

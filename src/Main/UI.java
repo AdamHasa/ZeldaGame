@@ -2,6 +2,8 @@ package Main;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+
+import Entity.Entity;
 import Object.*;
 
 public class UI {
@@ -21,10 +23,11 @@ public class UI {
         arial_40 = new Font("Arial", Font.PLAIN, 40);
         arial_80B = new Font("Arial", Font.BOLD, 80);
         OBJ_SmallKey key = new OBJ_SmallKey(gp);
-        keyImage = key.image;
+        keyImage = key.down1;
+        
 
         //Hud Object
-        SuperObject heart = new OBJ_Heart(gp);
+        Entity heart = new OBJ_Heart(gp);
         heart_full = heart.image;
         heart_half = heart.image2;
         heart_blank = heart.image3;

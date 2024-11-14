@@ -62,8 +62,8 @@ public class Player extends Entity{
             int objIndex = gp.cChecker.checkObject(this, true);
             pickUpObject(objIndex);
 
-            int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
-            interactNPC(npcIndex);
+//            int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
+//            interactNPC(npcIndex);
 
             if(!collisionOn) {
                 switch (direction) {
