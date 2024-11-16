@@ -8,8 +8,12 @@ import java.util.Random;
 
 public class MON_Zol extends Entity{
 
+    GamePanel gp;
+
     public MON_Zol(GamePanel gp){
         super(gp);
+
+        this.gp = gp;
 
         name = "Zol";
         type = 2;
@@ -25,14 +29,14 @@ public class MON_Zol extends Entity{
     }
 
     public void getImage(){
-        up1 = setup("/enemies/zol_01");
-        up2 = setup("/enemies/zol_02");
-        down1 = setup("/enemies/zol_01");
-        down2 = setup("/enemies/zol_02");
-        left1 = setup("/enemies/zol_01");
-        left2 = setup("/enemies/zol_02");
-        right1 = setup("/enemies/zol_01");
-        right2 = setup("/enemies/zol_02");
+        up1 = setup("/enemies/zol_01", gp.tileSize, gp.tileSize);
+        up2 = setup("/enemies/zol_02", gp.tileSize, gp.tileSize);
+        down1 = setup("/enemies/zol_01", gp.tileSize, gp.tileSize);
+        down2 = setup("/enemies/zol_02", gp.tileSize, gp.tileSize);
+        left1 = setup("/enemies/zol_01", gp.tileSize, gp.tileSize);
+        left2 = setup("/enemies/zol_02", gp.tileSize, gp.tileSize);
+        right1 = setup("/enemies/zol_01", gp.tileSize, gp.tileSize);
+        right2 = setup("/enemies/zol_02", gp.tileSize, gp.tileSize);
     }
 
     public void setAction(){
