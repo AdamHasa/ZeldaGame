@@ -1,5 +1,6 @@
 package Main;
 
+import Monster.MON_Zol;
 import Object.OBJ_SmallKey;
 import Object.OBJ_LockedDoor;
 
@@ -24,5 +25,15 @@ public class AssetSetter {
         gp.obj[2].worldX = 1 * gp.tileSize;
         gp.obj[2].worldY = 6 * gp.tileSize;
 
+    }
+
+    public void setMonster(){
+        gp.monster[0] = new MON_Zol(gp);
+        gp.monster[0].worldX = 12 * gp.tileSize;
+        gp.monster[0].worldY = 4 * gp.tileSize;
+
+        gp.monster[1] = new MON_Zol(gp);
+        gp.monster[1].worldX = 16 * gp.tileSize;
+        gp.monster[1].worldY = 4 * gp.tileSize;
     }
 }

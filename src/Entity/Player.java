@@ -65,6 +65,9 @@ public class Player extends Entity{
 //            int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
 //            interactNPC(npcIndex);
 
+            int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+            contactMonster(monsterIndex);
+
             if(!collisionOn) {
                 switch (direction) {
                     case "up":
@@ -90,6 +93,14 @@ public class Player extends Entity{
                     spriteNum = 1;
                 }
                 spriteCounter = 0;
+            }
+        }
+        // invincibilty
+        if (invincible){
+            invincibleCounter++;
+            if (invincibleCounter >120){
+                invincible = false;
+                invincibleCounter = 0;
             }
         }
     }
@@ -136,6 +147,32 @@ public class Player extends Entity{
         
     }
 
+    public void contactMonster(int i){
+        if (i != 999){
+            if (!invincible){
+                life -=1;
+                invincible = true;
+
+                //knockback need work to make it smooth
+//                switch (direction) {
+//                    case "up":
+//                        worldY += gp.tileSize;
+//                        break;
+//                    case "down":
+//                        worldY -= gp.tileSize;
+//                        break;
+//                    case "left":
+//                        worldX += gp.tileSize;
+//                        break;
+//                    case "right":
+//                        worldX -= gp.tileSize;
+//                        break;
+//                }
+            }
+        }
+
+    }
+
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
 
@@ -175,6 +212,13 @@ public class Player extends Entity{
                 break;
         }
 
+        if (invincible){
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+        }
+
         g2.drawImage(image, screenX, screenY,null);
+
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+
     }
 }
