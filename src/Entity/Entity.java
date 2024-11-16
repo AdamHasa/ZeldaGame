@@ -33,6 +33,7 @@ public class Entity {
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
+    public  Rectangle attackArea = new Rectangle(0,0,0,0);
 
     //character status
     public int maxLife;
@@ -93,6 +94,14 @@ public class Entity {
             }
             spriteCounter = 0;
         }
+
+        if (invincible){
+            invincibleCounter++;
+            if (invincibleCounter >40){
+                invincible = false;
+                invincibleCounter = 0;
+            }
+        }
     }
     public void draw(Graphics2D g2){
         BufferedImage image = null;
@@ -138,7 +147,14 @@ public class Entity {
                     }
                     break;
             }
+
+            if (invincible){
+                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+            }
+
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         }
     }
 

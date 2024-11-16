@@ -26,6 +26,8 @@ public class Player extends Entity{
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
+        attackArea = new Rectangle(36, 36);
+
         setDefaultValues();
         getPlayerImage();
         getAttackImage();
@@ -119,6 +121,32 @@ public class Player extends Entity{
         spriteCounter++;
         if (spriteCounter<30){
 
+            int currentWorldX = worldX;
+            int currentWorldY = worldY;
+            int solidAreaWidth = solidArea.width;
+            int solidAreaHeight = solidArea.height;
+
+            switch (direction){
+                case "up": worldY -= attackArea.height;
+                break;
+                case "down": worldY += attackArea.height;
+                break;
+                case "left": worldX -= attackArea.width;
+                break;
+                case "right": worldX += attackArea.width;
+            }
+
+            solidArea.width = attackArea.width;
+            solidArea.height = attackArea.height;
+
+            int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+            damageMonster(monsterIndex);
+
+            worldX = currentWorldX;
+            worldY = currentWorldY;
+            solidArea.width = solidAreaWidth;
+            solidArea.height = solidAreaHeight;
+
         }else {
             spriteCounter = 0;
             attacking = false;
@@ -195,6 +223,22 @@ public class Player extends Entity{
 //                        worldX -= gp.tileSize;
 //                        break;
 //                }
+            }
+        }
+
+    }
+
+    public void damageMonster(int i){
+        if (i != 999){
+            if (!gp.monster[i].invincible){
+                gp.monster[i].life -= 1;
+                gp.monster[i].invincible = true;
+
+                if (gp.monster[i].life <=0){
+                    gp.monster[i] = null;
+
+                }
+
             }
         }
 
