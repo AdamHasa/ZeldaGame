@@ -170,20 +170,18 @@ public class Entity {
     public void dyingAnimation(Graphics2D g2) {
         dyingCounter++;
         int i = 5;
-        if (dyingCounter <= i) {changeAlpha(g2, 0f);}
-        if (dyingCounter > i && dyingCounter <=i*2) {changeAlpha(g2, 1f);}
-        if (dyingCounter > i*2 && dyingCounter <=i*3) {changeAlpha(g2, 0f);}
-        if (dyingCounter > i*3 && dyingCounter <=i*4) {changeAlpha(g2, 1f);}
-        if (dyingCounter > i*4 && dyingCounter <=i*5) {changeAlpha(g2, 0f);}
-        if (dyingCounter > i*5 && dyingCounter <=i*6) {changeAlpha(g2, 0f);}
-        if (dyingCounter > i*6 && dyingCounter <=i*7) {changeAlpha(g2, 1f);}
-        if (dyingCounter > i*7 && dyingCounter <=i*8) {changeAlpha(g2, 0f);}
-        if (dyingCounter > i*8){
+
+        int step = dyingCounter / i;
+
+        if (step < 9) {
+            float alpha = (step % 2 == 0) ? 0f : 1f;
+            changeAlpha(g2, alpha);
+        } else {
             dying = false;
             alive = false;
         }
-
     }
+
 
     public void changeAlpha(Graphics2D g2, float alphaValue){
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
