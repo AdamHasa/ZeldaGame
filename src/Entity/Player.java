@@ -5,6 +5,7 @@ import Main.KeyHandler;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import Object.*;
 
 public class Player extends Entity{
     KeyHandler keyH;
@@ -12,6 +13,7 @@ public class Player extends Entity{
     public final int screenX;
     public final int screenY;
     public int smallKey = 0;
+    public Image heldItem = null;
 
     public Player(GamePanel gp, KeyHandler keyH){
         super(gp);
@@ -42,6 +44,8 @@ public class Player extends Entity{
         left2 = setup("/player/player_left_02", gp.tileSize, gp.tileSize);
         right1 = setup("/player/player_right_01", gp.tileSize, gp.tileSize);
         right2 = setup("/player/player_right_02", gp.tileSize, gp.tileSize);
+
+        player_fanfare = setup("/player/player_fanfare", gp.tileSize, gp.tileSize);
     }
 
     public void getAttackImage(){
@@ -56,8 +60,9 @@ public class Player extends Entity{
         if (attacking){
             attack();
 
-        }
-        else if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
+        } else if (fanfare) {
+            openChest();
+        } else if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
             if (keyH.upPressed) {
                 direction = "up";
             } else if (keyH.downPressed) {
@@ -185,11 +190,28 @@ public class Player extends Entity{
                     }else {
                         //TODO play sound effect
                     }
-
                     break;
+                case "Chest":
+                    fanfare = true;
+                    int openedWorldX = gp.obj[i].worldX;
+                    int openedWorldY = gp.obj[i].worldY;
+                    gp.obj[i] = new OBJ_ChestOpened(gp);
+                    gp.obj[i].worldX = openedWorldX;
+                    gp.obj[i].worldY = openedWorldY;
             }
         }
     }
+
+    private void openChest() {
+        spriteCounter++;
+        if (spriteCounter<60){
+
+        }else {
+            fanfare = false;
+            spriteCounter = 0;
+        }
+    }
+
     private void setDefaultValues() {
         worldX = gp.tileSize * 4;
         worldY = gp.tileSize * 4;
@@ -288,6 +310,10 @@ public class Player extends Entity{
                     image = attackRight1;
                 }
                 break;
+        }
+
+        if (fanfare){
+            image = player_fanfare;
         }
 
         if (invincible){

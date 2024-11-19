@@ -14,7 +14,7 @@ public class Entity {
     public int worldX, worldY;
 
     //images
-    public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
+    public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2, player_fanfare;
     public BufferedImage attackUp1, attackDown1, attackLeft1, attackRight1;
     public BufferedImage image, image2, image3;
 
@@ -43,6 +43,7 @@ public class Entity {
     public String name;
     public String direction = "down";
     boolean attacking = false;
+    boolean fanfare = false;
 
     //dying
     public boolean alive = true;
