@@ -12,8 +12,13 @@ public class Sound {
 
     public Sound(){
         soundURL[0] = getClass().getResource("/sound/Hyrule_Field.wav");
-        soundURL[1] = getClass().getResource("/sound/key.wav");
+        soundURL[1] = getClass().getResource("/sound/object/LOZ_Get_Item.wav");
         soundURL[2] = getClass().getResource("/sound/unlock.wav");
+        soundURL[3] = getClass().getResource("/sound/combat/LOZ_Enemy_Die.wav");
+        soundURL[4] = getClass().getResource("/sound/combat/LOZ_Enemy_Hit.wav");
+        soundURL[5] = getClass().getResource("/sound/combat/LOZ_Link_Hurt.wav");
+        soundURL[6] = getClass().getResource("/sound/combat/LOZ_Sword_Slash.wav");
+        soundURL[7] = getClass().getResource("/sound/object/LOZ_Fanfare.wav");
     }
 
     public void setFile(int i){

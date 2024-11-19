@@ -161,6 +161,9 @@ public class Player extends Entity{
 
     private void attackStatus() {
         if (keyH.enterPressed == true){
+            if(!attacking){
+                gp.playSE(6);
+            }
             attacking = true;
         }
     }
@@ -192,6 +195,7 @@ public class Player extends Entity{
                     }
                     break;
                 case "Chest":
+                    gp.playSE(7);
                     fanfare = true;
                     int openedWorldX = gp.obj[i].worldX;
                     int openedWorldY = gp.obj[i].worldY;
@@ -227,6 +231,7 @@ public class Player extends Entity{
     public void contactMonster(int i){
         if (i != 999){
             if (!invincible){
+                gp.playSE(5);
                 life -=1;
                 invincible = true;
 
@@ -254,9 +259,11 @@ public class Player extends Entity{
         if (i != 999){
             if (!gp.monster[i].invincible){
                 gp.monster[i].life -= 1;
+                gp.playSE(4);
                 gp.monster[i].invincible = true;
 
                 if (gp.monster[i].life <=0){
+                    gp.playSE(3);
                     gp.monster[i].dying = true;
 
                 }

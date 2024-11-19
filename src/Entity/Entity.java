@@ -68,6 +68,7 @@ public class Entity {
 
         if (this.type ==2 && contactPlayer){
             if (!gp.player.invincible){
+                gp.playSE(5);
                 gp.player.life -= 1;
                 gp.player.invincible = true;
 
