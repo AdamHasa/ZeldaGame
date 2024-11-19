@@ -197,6 +197,14 @@ public class Player extends Entity{
                 case "Chest":
                     gp.playSE(7);
                     fanfare = true;
+                    if (gp.obj[i].containedItem != null) {
+                        Entity item = gp.obj[i].containedItem;
+                        switch (item.name){
+                            case "SmallKey":
+                                smallKey++;
+                                break;
+                        }
+                    }
                     int openedWorldX = gp.obj[i].worldX;
                     int openedWorldY = gp.obj[i].worldY;
                     gp.obj[i] = new OBJ_ChestOpened(gp);

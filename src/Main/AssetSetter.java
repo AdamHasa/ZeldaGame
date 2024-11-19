@@ -24,9 +24,11 @@ public class AssetSetter {
         gp.obj[2].worldX = 1 * gp.tileSize;
         gp.obj[2].worldY = 6 * gp.tileSize;
 
+        OBJ_SmallKey smallKey = new OBJ_SmallKey(gp);
         gp.obj[3] = new OBJ_Chest(gp);
         gp.obj[3].worldX = 11 * gp.tileSize;
         gp.obj[3].worldY = 7 * gp.tileSize;
+        gp.obj[3].setContainedItem(smallKey);
 
     }
 

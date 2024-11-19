@@ -7,8 +7,6 @@ import java.awt.*;
 
 public class OBJ_Chest extends Entity {
 
-    Image item;
-
     public OBJ_Chest(GamePanel gp) {
         super(gp);
 
@@ -16,5 +14,9 @@ public class OBJ_Chest extends Entity {
         down1 = setup("/objects/chest", gp.tileSize, gp.tileSize);
 
         collision = true;
+    }
+
+    public void setContainedItem(Entity item) {
+        this.containedItem = item;
     }
 }

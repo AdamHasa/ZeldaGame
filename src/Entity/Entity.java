@@ -50,6 +50,9 @@ public class Entity {
     public boolean dying = false;
     int dyingCounter = 0;
 
+    //
+    public Entity containedItem;
+
     public Entity(GamePanel gp){
         this.gp = gp;
 
@@ -201,5 +204,8 @@ public class Entity {
             e.printStackTrace();
         }
         return scaledImage;
+    }
+
+    public void setContainedItem(Entity entity) {
     }
 }
