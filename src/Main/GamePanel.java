@@ -56,7 +56,7 @@ public class GamePanel extends JPanel implements Runnable{
     public Player player = new Player(this, keyH);
     public Entity obj[] = new Entity[10];
     public Entity monster[] = new Entity[10];
-    ArrayList<Entity> entityList = new ArrayList<>();
+    public ArrayList<Entity> entityList = new ArrayList<>();
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
