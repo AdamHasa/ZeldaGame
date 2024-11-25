@@ -41,7 +41,7 @@ public class GamePanel extends JPanel implements Runnable{
     TileManager tileM;
 
     //Keyhandler
-    KeyHandler keyH = new KeyHandler();
+    KeyHandler keyH = new KeyHandler(this);
 
     //sound
     Sound music = new Sound();
@@ -57,6 +57,11 @@ public class GamePanel extends JPanel implements Runnable{
     public Entity obj[] = new Entity[10];
     public Entity monster[] = new Entity[10];
     public ArrayList<Entity> entityList = new ArrayList<>();
+
+    //Gamestate
+    public int gameState;
+    public final int playState = 1;
+    public final int pauseState = 2;
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -74,6 +79,7 @@ public class GamePanel extends JPanel implements Runnable{
         aSetter.setMonster();
 
         playMusic(0);
+        gameState = playState;
     }
 
     public void startGameThread() {
@@ -136,17 +142,22 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void update(){
 
-        player.update();
+        if (gameState == playState){
+            player.update();
 
-        for (int i = 0; i < monster.length; i++){
-            if (monster[i] != null){
-                if (monster[i].alive && !monster[i].dying){
-                    monster[i].update();
-                }
-                if (!monster[i].alive){
-                    monster[i] = null;
+            for (int i = 0; i < monster.length; i++){
+                if (monster[i] != null){
+                    if (monster[i].alive && !monster[i].dying){
+                        monster[i].update();
+                    }
+                    if (!monster[i].alive){
+                        monster[i] = null;
+                    }
                 }
             }
+        }
+        if (gameState == pauseState){
+
         }
     }
 

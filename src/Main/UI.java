@@ -44,12 +44,20 @@ public class UI {
         g2.setFont(arial_40);
         g2.setColor(Color.white);
 
-
-        g2.drawImage(keyImage, gp.tileSize/2, gp.tileSize/2 + 80, gp.tileSize, gp.tileSize, null);
-        g2.drawString("x " + gp.player.smallKey, 74, gp.tileSize/2 + 120);
+        drawItemUI();
 
         drawPlayerLife();
 
+        drawMessage();
+        
+        if (gp.gameState == gp.playState){
+        }
+        if (gp.gameState == gp.pauseState){
+            drawPauseScreen();
+        }
+    }
+
+    private void drawMessage() {
         if(messageOn){
             g2.setFont(g2.getFont().deriveFont(30F));
             g2.drawString(message, gp.tileSize/2, gp.tileSize*5);
@@ -61,6 +69,20 @@ public class UI {
                 messageOn = false;
             }
         }
+    }
+
+    private void drawItemUI() {
+        g2.drawImage(keyImage, gp.tileSize/2, gp.tileSize/2 + 80, gp.tileSize, gp.tileSize, null);
+        g2.drawString("x " + gp.player.smallKey, 74, gp.tileSize/2 + 120);
+    }
+
+    public void drawPauseScreen() {
+        String text = "PAUSE";
+        int x = getXForCenteredText(text);
+
+        int y = gp.screenHeight/2;
+
+        g2.drawString(text, x, y);
     }
 
     public void drawPlayerLife() {
@@ -88,5 +110,11 @@ public class UI {
             i++;
             x+= gp.tileSize;
         }
+    }
+
+    public int getXForCenteredText(String text){
+        int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
+        int x = gp.screenWidth/2 - length/2;
+        return x;
     }
 }
