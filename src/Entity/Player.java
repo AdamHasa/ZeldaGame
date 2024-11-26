@@ -161,7 +161,7 @@ public class Player extends Entity{
     }
 
     private void attackStatus() {
-        if (keyH.enterPressed == true){
+        if (keyH.zPressed == true){
             if(!attacking){
                 gp.playSE(6);
             }
@@ -235,7 +235,7 @@ public class Player extends Entity{
 
         //player status
         maxLife = 6;
-        life = maxLife;
+        life = 2;
         
     }
 
@@ -245,6 +245,12 @@ public class Player extends Entity{
                 gp.playSE(5);
                 life -=1;
                 invincible = true;
+                if (life<= 0){
+                    gp.stopMusic();
+                    gp.playMusic(8);
+                    dying = true;
+
+                }
 
                 //knockback need work to make it smooth
 //                switch (direction) {
@@ -337,8 +343,16 @@ public class Player extends Entity{
             gp.entityList.add(item);
         }
 
-        if (invincible){
+        if (invincible && !dying){
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+        }
+
+        if (dying){
+            gp.gameState = 999;
+            dyingAnimation(g2);
+            if (!dying){
+                gp.gameState = gp.gameOverState;
+            }
         }
 
         g2.drawImage(image, tempScreenX, tempScreenY,null);

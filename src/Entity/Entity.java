@@ -175,6 +175,9 @@ public class Entity {
     public void dyingAnimation(Graphics2D g2) {
         dyingCounter++;
         int i = 5;
+        if (this == gp.player){
+            i = 20;
+        }
 
         int step = dyingCounter / i;
 

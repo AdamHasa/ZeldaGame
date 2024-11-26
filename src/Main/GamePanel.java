@@ -62,6 +62,7 @@ public class GamePanel extends JPanel implements Runnable{
     public int gameState;
     public final int playState = 1;
     public final int pauseState = 2;
+    public final int gameOverState = 3;
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -75,8 +76,15 @@ public class GamePanel extends JPanel implements Runnable{
         tileM = new TileManager(this);
     }
     public void setupGame() {
+        player = new Player(this, keyH);
         aSetter.setObject();
         aSetter.setMonster();
+
+        try {
+            stopMusic();
+        } catch (Exception e) {
+
+        }
 
         playMusic(0);
         gameState = playState;
@@ -141,6 +149,10 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void update(){
+
+        if (gameState == gameOverState){
+
+        }
 
         if (gameState == playState){
             player.update();

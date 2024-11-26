@@ -7,7 +7,7 @@ public class KeyHandler implements KeyListener {
 
     GamePanel gp;
     public boolean upPressed, downPressed, leftPressed, rightPressed;
-    public boolean enterPressed;
+    public boolean zPressed;
 
     public KeyHandler(GamePanel gp){
         this.gp = gp;
@@ -37,7 +37,13 @@ public class KeyHandler implements KeyListener {
             rightPressed = true;
         }
         if(code == KeyEvent.VK_Z){
-            enterPressed = true;
+            if (gp.gameState == gp.gameOverState){
+                gp.gameState = gp.playState;
+
+                gp.setupGame();
+            }else {
+                zPressed = true;
+            }
         }
         if(code == KeyEvent.VK_P){
             if (gp.gameState == gp.playState){
@@ -67,7 +73,7 @@ public class KeyHandler implements KeyListener {
             rightPressed = false;
         }
         if(code == KeyEvent.VK_Z){
-            enterPressed = false;
+            zPressed = false;
         }
 
     }

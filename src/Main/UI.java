@@ -55,6 +55,27 @@ public class UI {
         if (gp.gameState == gp.pauseState){
             drawPauseScreen();
         }
+        if (gp.gameState == gp.gameOverState){
+            drawGameOverScreen();
+        }
+    }
+
+    private void drawGameOverScreen() {
+        g2.setColor(Color.black);
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
+        g2.setFont(arial_80B);
+        g2.setColor(Color.white);
+        String text = "GAME OVER";
+        int x = getXForCenteredText(text);
+        int y = gp.screenHeight / 2 - gp.tileSize;
+        g2.drawString(text, x, y);
+
+        g2.setFont(arial_40);
+        text = "Press Z to start again";
+        x = getXForCenteredText(text);
+        y += gp.tileSize * 2;
+        g2.drawString(text, x, y);
     }
 
     private void drawMessage() {

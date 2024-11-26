@@ -19,6 +19,7 @@ public class Sound {
         soundURL[5] = getClass().getResource("/sound/combat/LOZ_Link_Hurt.wav");
         soundURL[6] = getClass().getResource("/sound/combat/LOZ_Sword_Slash.wav");
         soundURL[7] = getClass().getResource("/sound/object/LOZ_Fanfare.wav");
+        soundURL[8] = getClass().getResource("/sound/Game_Over.wav");
     }
 
     public void setFile(int i){
