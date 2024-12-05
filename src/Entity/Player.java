@@ -19,6 +19,8 @@ public class Player extends Entity{
     public Player(GamePanel gp, KeyHandler keyH){
         super(gp);
 
+        damage = 2;
+
         this.keyH = keyH;
 
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
@@ -243,7 +245,7 @@ public class Player extends Entity{
         if (i != 999){
             if (!invincible && gp.monster[i].life > 0 ){
                 gp.playSE(5);
-                life -=1;
+                life -= gp.monster[i].damage;
                 invincible = true;
                 if (life<= 0){
                     gp.stopMusic();
@@ -275,7 +277,7 @@ public class Player extends Entity{
     public void damageMonster(int i){
         if (i != 999){
             if (!gp.monster[i].invincible){
-                gp.monster[i].life -= 1;
+                gp.monster[i].life -= damage;
                 gp.playSE(4);
                 gp.monster[i].invincible = true;
 

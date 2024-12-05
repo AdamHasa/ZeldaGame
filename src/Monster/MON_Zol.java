@@ -20,6 +20,7 @@ public class MON_Zol extends Entity{
         speed = 1;
         maxLife = 4;
         life = maxLife;
+        damage = 1;
 
         solidArea = new Rectangle(0,0,gp.tileSize,gp.tileSize);
         solidAreaDefaultX = solidArea.x;

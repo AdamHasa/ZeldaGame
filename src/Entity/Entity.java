@@ -44,6 +44,7 @@ public class Entity {
     public String direction = "down";
     boolean attacking = false;
     boolean fanfare = false;
+    public int damage;
 
     //dying
     public boolean alive = true;
