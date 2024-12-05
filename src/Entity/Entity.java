@@ -46,6 +46,10 @@ public class Entity {
     boolean fanfare = false;
     public int damage;
 
+    //projectile
+    public Projectile projectile;
+    public int shotAvailableCounter;
+
     //dying
     public boolean alive = true;
     public boolean dying = false;

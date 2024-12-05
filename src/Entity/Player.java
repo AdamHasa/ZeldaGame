@@ -115,6 +115,15 @@ public class Player extends Entity{
                 spriteCounter = 0;
             }
         }
+
+        if(keyH.xPressed && !projectile.alive && shotAvailableCounter ==30){
+
+            projectile.set(worldX, worldY, direction, true, this);
+
+            gp.projectileList.add(projectile);
+
+            shotAvailableCounter =0;
+        }
         // invincibilty
         if (invincible){
             invincibleCounter++;
@@ -122,6 +131,9 @@ public class Player extends Entity{
                 invincible = false;
                 invincibleCounter = 0;
             }
+        }
+        if (shotAvailableCounter <30){
+            shotAvailableCounter++;
         }
     }
 
@@ -148,7 +160,7 @@ public class Player extends Entity{
             solidArea.height = attackArea.height;
 
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-            damageMonster(monsterIndex);
+            damageMonster(monsterIndex, damage);
 
             worldX = currentWorldX;
             worldY = currentWorldY;
@@ -238,6 +250,8 @@ public class Player extends Entity{
         //player status
         maxLife = 6;
         life = maxLife;
+
+        projectile = new OBJ_Arrow(this.gp);
         
     }
 
@@ -274,10 +288,10 @@ public class Player extends Entity{
 
     }
 
-    public void damageMonster(int i){
+    public void damageMonster(int i, int damagePoints){
         if (i != 999){
             if (!gp.monster[i].invincible){
-                gp.monster[i].life -= damage;
+                gp.monster[i].life -= damagePoints;
                 gp.playSE(4);
                 gp.monster[i].invincible = true;
 
