@@ -65,7 +65,7 @@ public class Player extends Entity{
 
         } else if (fanfare) {
             openChest();
-        } else if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
+        } else if ((keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) && shotAvailableCounter >=15) {
             if (keyH.upPressed) {
                 direction = "up";
             } else if (keyH.downPressed) {
