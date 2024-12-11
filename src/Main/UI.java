@@ -53,11 +53,32 @@ public class UI {
         if (gp.gameState == gp.playState){
         }
         if (gp.gameState == gp.pauseState){
-            drawPauseScreen();
+
+            drawInventory();
         }
         if (gp.gameState == gp.gameOverState){
             drawGameOverScreen();
         }
+    }
+
+    public void drawInventory() {
+        int frameX = gp.tileSize*9;
+        int frameY = gp.tileSize;
+        int frameWidth = gp.tileSize*6;
+        int frameHeight = gp.tileSize*5;
+
+        drawSubWindow(frameX,frameY,frameWidth,frameHeight);
+    }
+
+    public void drawSubWindow(int x, int y, int width, int height){
+        Color c = new Color(0,0,0,210);
+        g2.setColor(c);
+        g2.fillRoundRect(x,y,width,height, 35, 35);
+
+        c = new Color(255,255,255);
+        g2.setColor(c);
+        g2.setStroke(new BasicStroke(5));
+        g2.drawRoundRect(x+5, y+5, width-10, height-10, 25,25);
     }
 
     private void drawGameOverScreen() {
@@ -96,16 +117,6 @@ public class UI {
         g2.drawImage(keyImage, gp.tileSize/2, gp.tileSize/2 + 80, gp.tileSize, gp.tileSize, null);
         g2.drawString("x " + gp.player.smallKey, 74, gp.tileSize/2 + 120);
     }
-
-    public void drawPauseScreen() {
-        String text = "PAUSE";
-        int x = getXForCenteredText(text);
-
-        int y = gp.screenHeight/2;
-
-        g2.drawString(text, x, y);
-    }
-
     public void drawPlayerLife() {
         int x = gp.tileSize/2;
         int y = gp.tileSize/2;
