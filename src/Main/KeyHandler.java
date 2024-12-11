@@ -47,6 +47,26 @@ public class KeyHandler implements KeyListener {
             gp.gameState = gp.playState;
             pausePressed = true;
         }
+        if(code == KeyEvent.VK_UP){
+            if (gp.ui.slotRow != 0){
+                gp.ui.slotRow--;
+            }
+        }
+        if(code == KeyEvent.VK_DOWN){
+            if (gp.ui.slotRow != 1){
+                gp.ui.slotRow++;
+            }
+        }
+        if(code == KeyEvent.VK_LEFT){
+            if (gp.ui.slotCol != 0){
+                gp.ui.slotCol--;
+            }
+        }
+        if(code == KeyEvent.VK_RIGHT){
+            if (gp.ui.slotCol !=4){
+                gp.ui.slotCol++;
+            }
+        }
     }
 
     private void playState(int code) {

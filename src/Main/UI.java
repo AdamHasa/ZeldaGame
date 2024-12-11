@@ -15,6 +15,8 @@ public class UI {
     public boolean messageOn = false;
     public String message = "";
     int messageCounter = 0;
+    public int slotCol = 0;
+    public int slotRow = 0;
 
     Graphics2D g2;
 
@@ -65,9 +67,24 @@ public class UI {
         int frameX = gp.tileSize*9;
         int frameY = gp.tileSize;
         int frameWidth = gp.tileSize*6;
-        int frameHeight = gp.tileSize*5;
+        int frameHeight = gp.tileSize*3;
 
         drawSubWindow(frameX,frameY,frameWidth,frameHeight);
+
+        final int slotXStart = frameX +20;
+        final int slotYStart = frameY +20;
+        int slotX = slotXStart;
+        int slotY = slotYStart;
+
+        int cursorX = slotXStart + (gp.tileSize * slotCol);
+        int cursorY = slotYStart + (gp.tileSize * slotRow);
+        int cursorWidth = gp.tileSize;
+        int cursorHeight = gp.tileSize;
+
+        g2.setColor(Color.white);
+        g2.setStroke(new BasicStroke(3));
+        g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10,10);
+
     }
 
     public void drawSubWindow(int x, int y, int width, int height){
