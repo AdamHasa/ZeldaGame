@@ -13,8 +13,7 @@ public class Player extends Entity{
     public final int screenX;
     public final int screenY;
     public int smallKey = 0;
-    public Image heldItem;
-    public Entity item;
+    public Entity fanfareItem;
 
     public Player(GamePanel gp, KeyHandler keyH){
         super(gp);
@@ -214,8 +213,7 @@ public class Player extends Entity{
                     fanfare = true;
                     if (gp.obj[i].containedItem != null) {
                         Entity item = gp.obj[i].containedItem;
-                        heldItem = item.image;
-                        this.item = item;
+                        this.fanfareItem = item;
                         switch (item.name){
                             case "SmallKey":
                                 smallKey++;
@@ -354,9 +352,9 @@ public class Player extends Entity{
 
         if (fanfare){
             image = player_fanfare;
-            item.worldX = this.worldX;
-            item.worldY= this.worldY - gp.tileSize;
-            gp.entityList.add(item);
+            fanfareItem.worldX = this.worldX;
+            fanfareItem.worldY= this.worldY - gp.tileSize;
+            gp.entityList.add(fanfareItem);
         }
 
         if (invincible && !dying){
