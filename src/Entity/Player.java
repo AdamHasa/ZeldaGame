@@ -5,6 +5,8 @@ import Main.KeyHandler;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
 import Object.*;
 
 public class Player extends Entity{
@@ -14,6 +16,8 @@ public class Player extends Entity{
     public final int screenY;
     public int smallKey = 0;
     public Entity fanfareItem;
+    public ArrayList<Entity> inventory = new ArrayList<>();
+    public final int inventorySize = 10;
 
     public Player(GamePanel gp, KeyHandler keyH){
         super(gp);
@@ -58,6 +62,13 @@ public class Player extends Entity{
     }
 
     public void update() {
+        if (life<= 0){
+            gp.stopMusic();
+            gp.playMusic(8);
+            dying = true;
+
+        }
+        
         attackStatus();
         if (attacking){
             attack();
@@ -259,12 +270,6 @@ public class Player extends Entity{
                 gp.playSE(5);
                 life -= gp.monster[i].damage;
                 invincible = true;
-                if (life<= 0){
-                    gp.stopMusic();
-                    gp.playMusic(8);
-                    dying = true;
-
-                }
 
                 //knockback need work to make it smooth
 //                switch (direction) {
