@@ -67,6 +67,9 @@ public class KeyHandler implements KeyListener {
                 gp.ui.slotCol++;
             }
         }
+        if(code == KeyEvent.VK_Z){
+            gp.player.selectItem();
+        }
     }
 
     private void playState(int code) {

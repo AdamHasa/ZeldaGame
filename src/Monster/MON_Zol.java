@@ -16,7 +16,7 @@ public class MON_Zol extends Entity{
         this.gp = gp;
 
         name = "Zol";
-        type = 2;
+        type = type_monster;
         speed = 1;
         maxLife = 4;
         life = maxLife;

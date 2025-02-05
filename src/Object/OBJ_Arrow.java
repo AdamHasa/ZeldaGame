@@ -9,6 +9,7 @@ public class OBJ_Arrow extends Projectile {
         super(gp);
         this.gp = gp;
 
+        type = type_equipment;
         String name = "Arrow";
         speed = 10;
         maxLife = 80;

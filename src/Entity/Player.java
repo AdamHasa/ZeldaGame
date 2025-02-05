@@ -19,6 +19,8 @@ public class Player extends Entity{
     public ArrayList<Entity> inventory = new ArrayList<>();
     public final int maxInventorySize = 10;
 
+    public Entity equipedItem;
+
     public Player(GamePanel gp, KeyHandler keyH){
         super(gp);
 
@@ -269,6 +271,7 @@ public class Player extends Entity{
 
     public void setItems(){
         projectile = new OBJ_Arrow(this.gp);
+        equipedItem = projectile;
         inventory.add(projectile);
     }
 
@@ -317,6 +320,20 @@ public class Player extends Entity{
 
     }
 
+    public void selectItem(){
+        int itemIndex = gp.ui.getItemIndexOnSlot();
+
+        if (itemIndex < inventory.size()){
+            Entity selectedItem = inventory.get(itemIndex);
+
+            if (selectedItem.type == type_equipment){
+                equipedItem = selectedItem;
+            }
+            if (selectedItem.type == type_consumable){
+                //TODO
+            }
+        }
+    }
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
         int tempScreenX = screenX;

@@ -11,6 +11,7 @@ public class OBJ_Hookshot extends Entity {
 
         this.gp = gp;
 
+        type = type_equipment;
         name = "Hookshot";
         speed = 10;
         maxLife = 80;

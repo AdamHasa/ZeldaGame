@@ -80,6 +80,10 @@ public class UI {
 
         // items
         for (int i =0; i < gp.player.inventory.size(); i++){
+            if (gp.player.inventory.get(i) == gp.player.equipedItem){
+                g2.setColor(new Color(240, 190, 90));
+                g2.fillRoundRect(slotX, slotY, gp.tileSize, gp.tileSize, 10, 10);
+            }
             g2.drawImage(gp.player.inventory.get(i).down1, slotX, slotY, null);
 
             slotX += slotSize;
@@ -91,7 +95,7 @@ public class UI {
         }
         // cursor
         int cursorX = slotXStart + (slotSize * slotCol);
-        int cursorY = slotYStart + (slotSize * slotRow);
+        int cursorY = slotYStart + (slotSize  * slotRow);
         int cursorWidth = gp.tileSize;
         int cursorHeight = gp.tileSize;
 
@@ -179,5 +183,10 @@ public class UI {
         int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         int x = gp.screenWidth/2 - length/2;
         return x;
+    }
+
+    public int getItemIndexOnSlot() {
+        int itemIndex = slotCol + (slotRow*5);
+        return itemIndex;
     }
 }
