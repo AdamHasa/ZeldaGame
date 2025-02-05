@@ -146,8 +146,6 @@ public class Player extends Entity{
     }
 
     private void useItem() {
-        System.out.println(equipedItem);
-        System.out.println(equipedItem.name);
         switch (equipedItem.name){
             case "Arrow":
                 if (!projectile.alive && shotAvailableCounter ==30){
