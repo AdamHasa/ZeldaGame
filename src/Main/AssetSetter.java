@@ -30,6 +30,12 @@ public class AssetSetter {
         gp.obj[3].worldY = 7 * gp.tileSize;
         gp.obj[3].setContainedItem(smallKey);
 
+        OBJ_Hookshot hookshot = new OBJ_Hookshot(gp);
+        gp.obj[4] = new OBJ_Chest(gp);
+        gp.obj[4].worldX = 11 * gp.tileSize;
+        gp.obj[4].worldY = 3 * gp.tileSize;
+        gp.obj[4].setContainedItem(hookshot);
+
     }
 
     public void setMonster(){

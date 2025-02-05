@@ -230,6 +230,10 @@ public class Player extends Entity{
                             case "SmallKey":
                                 smallKey++;
                                 break;
+                            case "Hookshot":
+                                OBJ_Hookshot hookshot = new OBJ_Hookshot(this.gp);
+                                inventory.add(hookshot);
+                                break;
                         }
                     }
                     int openedWorldX = gp.obj[i].worldX;
