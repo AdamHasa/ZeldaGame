@@ -17,7 +17,7 @@ public class Player extends Entity{
     public int smallKey = 0;
     public Entity fanfareItem;
     public ArrayList<Entity> inventory = new ArrayList<>();
-    public final int inventorySize = 10;
+    public final int maxInventorySize = 10;
 
     public Player(GamePanel gp, KeyHandler keyH){
         super(gp);
@@ -39,6 +39,7 @@ public class Player extends Entity{
         setDefaultValues();
         getPlayerImage();
         getAttackImage();
+        setItems();
     }
 
     private void getPlayerImage() {
@@ -259,9 +260,12 @@ public class Player extends Entity{
         //player status
         maxLife = 6;
         life = maxLife;
-
-        projectile = new OBJ_Arrow(this.gp);
         
+    }
+
+    public void setItems(){
+        projectile = new OBJ_Arrow(this.gp);
+        inventory.add(projectile);
     }
 
     public void contactMonster(int i){
