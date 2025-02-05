@@ -129,13 +129,8 @@ public class Player extends Entity{
             }
         }
 
-        if(keyH.xPressed && !projectile.alive && shotAvailableCounter ==30){
-
-            projectile.set(worldX, worldY, direction, true, this);
-
-            gp.projectileList.add(projectile);
-
-            shotAvailableCounter =0;
+        if(keyH.xPressed){
+            useItem();
         }
         // invincibilty
         if (invincible){
@@ -147,6 +142,25 @@ public class Player extends Entity{
         }
         if (shotAvailableCounter <30){
             shotAvailableCounter++;
+        }
+    }
+
+    private void useItem() {
+        System.out.println(equipedItem);
+        System.out.println(equipedItem.name);
+        switch (equipedItem.name){
+            case "Arrow":
+                if (!projectile.alive && shotAvailableCounter ==30){
+                    projectile.set(worldX, worldY, direction, true, this);
+
+                    gp.projectileList.add(projectile);
+
+                    shotAvailableCounter =0;
+                }
+                break;
+            case "Hookshot":
+                System.out.println("blabl");
+                break;
         }
     }
 
