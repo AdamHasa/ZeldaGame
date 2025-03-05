@@ -25,4 +25,14 @@ public class OBJ_Arrow extends Projectile {
         right1 = setup("/player/projectile/Arrow_Right", gp.tileSize, gp.tileSize);
         down1 = setup("/player/projectile/Arrow_Down", gp.tileSize, gp.tileSize);
     }
+
+    public void activateItem() {
+        if (!gp.player.projectile.alive && gp.player.shotAvailableCounter ==30){
+            gp.player.projectile.set(gp.player.worldX, gp.player.worldY, gp.player.direction, true, gp.player);
+
+            gp.projectileList.add(gp.player.projectile);
+
+            gp.player.shotAvailableCounter =0;
+        }
+    }
 }

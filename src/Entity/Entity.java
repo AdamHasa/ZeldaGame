@@ -222,4 +222,7 @@ public class Entity {
 
     public void setContainedItem(Entity entity) {
     }
+
+    public void activateItem() {
+    }
 }

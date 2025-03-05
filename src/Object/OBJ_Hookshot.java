@@ -20,4 +20,8 @@ public class OBJ_Hookshot extends Entity {
         alive = false;
         down1 = setup("/objects/hookshot", gp.tileSize, gp.tileSize);
     }
+
+    public void activateItem() {
+        System.out.println("hookshot");
+    }
 }
